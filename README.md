@@ -1,128 +1,179 @@
 # Expense Tracker Web Application
 
-## Project Overview
-The Expense Tracker is a full-featured web application built with Spring Boot that allows users to securely manage their personal expenses. It supports user authentication, expense CRUD operations, and advanced filtering by date and category. The backend is designed with RESTful principles and uses JWT for stateless authentication.
+A full-stack web application for tracking personal expenses, built with React, TypeScript, and Spring Boot.
 
 ## Features
-- User registration and login with JWT authentication
-- Secure password storage (BCrypt)
-- Add, update, delete, and view expenses
-- Filter expenses by date, date range, and category
-- Multi-user support (each user sees only their own expenses)
-- MySQL database integration
-- Global error handling
+
+- 🔐 **User Authentication**
+  - Secure login and registration
+  - JWT-based authentication
+  - Protected routes
+
+- 💰 **Expense Management**
+  - Add new expenses
+  - Edit existing expenses
+  - Delete expenses
+  - View expense history
+
+- 📊 **Dashboard**
+  - Monthly expense summary
+  - Category-wise breakdown
+  - Recent expenses list
+  - Visual expense analytics
+
+- 🔍 **Advanced Filtering**
+  - Filter by date
+  - Filter by category
+  - Filter by date range
+  - Category-wise expense analysis
+
+## Screenshots
+- Register
+  
+![WhatsApp Image 2025-05-20 at 17 04 43_37c66a1f](https://github.com/user-attachments/assets/7d737949-d695-41db-b28a-b938d46fe86e)
+
+- Login
+
+![WhatsApp Image 2025-05-20 at 17 04 27_3be0ab55](https://github.com/user-attachments/assets/414f5746-d97d-485f-8e2b-f0687d6f37f4)
+
+- Dashboard
+
+![WhatsApp Image 2025-05-20 at 17 01 00_d4291329](https://github.com/user-attachments/assets/ea4684d3-f055-440b-8210-81263feed1f9)
+
+- Expenses
+
+![WhatsApp Image 2025-05-20 at 17 01 27_a56d2f3b](https://github.com/user-attachments/assets/573b389d-6c90-4d65-9a50-733f027b8c06)
+
+- Expenses by Date Range
+
+![WhatsApp Image 2025-05-20 at 17 02 30_09912046](https://github.com/user-attachments/assets/c8ee2150-51f2-4801-bc8b-4271af332090)
+
+- Expenses By Category
+
+![WhatsApp Image 2025-05-20 at 17 02 48_442d7d98](https://github.com/user-attachments/assets/898846f1-1df4-44c7-8793-6daa2ebb2768)
+
+- Expenses By Category and Date Range
+
+![WhatsApp Image 2025-05-20 at 17 03 37_b496a9a4](https://github.com/user-attachments/assets/ac727414-b64f-4690-bdff-2c55ef47bd65)
+
+- Add New Expense
+
+![WhatsApp Image 2025-05-20 at 17 03 53_5f1f8be5](https://github.com/user-attachments/assets/661ae4be-8022-40f7-a41a-b305819fe608)
+
+- Edit Expense
+
+![WhatsApp Image 2025-05-20 at 17 04 10_444968f2](https://github.com/user-attachments/assets/3fc21153-02f8-4426-9ca9-8dca999346cd)
+
 
 ## Tech Stack
-- **Backend:** Java, Spring Boot, Spring Security, Spring Data JPA
-- **Database:** MySQL
-- **Authentication:** JWT (JSON Web Token)
-- **Build Tool:** Maven
+
+### Frontend
+- React with TypeScript
+- Chakra UI for styling
+- React Router for navigation
+- Axios for API calls
+- JWT for authentication
+
+### Backend
+- Spring Boot
+- Spring Security
+- JPA/Hibernate
+- MySQL/PostgreSQL
+- JWT Authentication
+
+## Prerequisites
+
+- Node.js (v14 or higher)
+- Java JDK 17 or higher
+- Maven
+- MySQL/PostgreSQL
 
 ## Getting Started
 
-### Prerequisites
-- Java 17 or later
-- Maven
-- MySQL
+### Backend Setup
 
-### Setup Instructions
-1. **Clone the repository:**
-   ```bash
-   git clone <your-repo-url>
-   cd ExpenseTracker
-   ```
-2. **Configure the database:**
-   - Update `src/main/resources/application.yml` with your MySQL credentials and database settings.
-3. **Build and run the application:**
-   ```bash
-   ./mvnw spring-boot:run
-   ```
-4. **The API will be available at:**
-   - `http://localhost:8080/api/`
+1. Clone the repository
+```bash
+git clone <repository-url>
+```
+
+2. Navigate to the backend directory
+```bash
+cd backend
+```
+
+3. Configure the database
+   - Update `application.properties` with your database credentials
+   - Create a database named `expense_tracker`
+
+4. Build and run the Spring Boot application
+```bash
+mvn spring-boot:run
+```
+
+The backend server will start on `http://localhost:8080`
+
+### Frontend Setup
+
+1. Navigate to the frontend directory
+```bash
+cd frontend
+```
+
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Start the development server
+```bash
+npm run dev
+```
+
+The frontend application will start on `http://localhost:5173`
 
 ## API Endpoints
 
 ### Authentication
+- `POST /api/auth/register` - Register a new user
+- `POST /api/auth/login` - Login user
 
-#### Register a New User
-- **POST** `/api/auth/register`
-- **Request Body:**
-  ```json
-  {
-    "username": "testuser",
-    "email": "test@example.com",
-    "password": "password123"
-  }
-  ```
-- **Response:** JWT token, username, email
+### Expenses
+- `GET /api/expenses` - Get all expenses
+- `GET /api/expenses/{id}` - Get expense by ID
+- `POST /api/expenses` - Create new expense
+- `PUT /api/expenses/{id}` - Update expense
+- `DELETE /api/expenses/{id}` - Delete expense
 
-#### Login
-- **POST** `/api/auth/login`
-- **Request Body:**
-  ```json
-  {
-    "username": "testuser",
-    "password": "password123"
-  }
-  ```
-- **Response:** JWT token, username, email
+### Filtering
+- `GET /api/expenses/byDate` - Get expenses by date
+- `GET /api/expenses/byDateBetween` - Get expenses by date range
+- `GET /api/expenses/byCategory` - Get expenses by category
+- `GET /api/expenses/byCategoryAndDateRange` - Get expenses by category and date range
 
----
+## Project Structure
 
-### Expense Management (All require `Authorization: Bearer <token>` header)
+```
+project/
+├── src/
+│   ├── components/
+│   │   ├── auth/
+│   │   ├── expenses/
+│   │   ├── dashboard/
+│   │   └── layout/
+│   ├── pages/
+│   ├── services/
+│   ├── context/
+│   └── types/
+├── public/
+└── package.json
+```
 
-#### Create a New Expense
-- **POST** `/api/expenses`
-- **Request Body:**
-  ```json
-  {
-    "amount": 25.50,
-    "category": "Food",
-    "date": "2024-03-20",
-    "description": "Lunch at restaurant"
-  }
-  ```
-- **Response:** Created expense object
+## Acknowledgments
 
-#### Get All Expenses
-- **GET** `/api/expenses`
-- **Response:** List of expenses
-
-#### Update an Expense
-- **PUT** `/api/expenses/{id}`
-- **Request Body:**
-  ```json
-  {
-    "amount": 30.00,
-    "category": "Food",
-    "date": "2024-03-20",
-    "description": "Updated lunch at restaurant"
-  }
-  ```
-- **Response:** Updated expense object
-
-#### Delete an Expense
-- **DELETE** `/api/expenses/{id}`
-- **Response:** 200 OK
-
-#### Get Expenses by Date Range
-- **GET** `/api/expenses/byDateBetween?startDate=2024-03-20&endDate=2024-03-21`
-- **Response:** List of expenses
-
-#### Get Expenses by Date
-- **GET** `/api/expenses/byDate?date=2024-03-20`
-- **Response:** List of expenses
-
-#### Get Expenses by Category and Date Range
-- **GET** `/api/expenses/byCategoryAndDateRange?Category=Travel&startdate=2024-03-20&endDate=2024-03-21`
-- **Response:** List of expenses
-
-#### Get Expenses by Category
-- **GET** `/api/expenses/byCategory?Category=Food&date=2024-03-20`
-- **Response:** List of expenses
-
----
-
+- Chakra UI for the component library
+- Spring Boot for the backend framework
+- React for the frontend framework 
 ## Error Handling
 - 400 Bad Request: Validation errors
 - 401 Unauthorized: Invalid credentials or missing/invalid token
