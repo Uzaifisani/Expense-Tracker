@@ -36,6 +36,7 @@ export interface ExpenseFormData {
   category: string;
   date: string;
   description: string;
+  user_id: string;
 }
 
 // Filter related types

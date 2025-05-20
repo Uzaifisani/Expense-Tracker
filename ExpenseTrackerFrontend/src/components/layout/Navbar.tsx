@@ -85,31 +85,9 @@ const Navbar = () => {
           direction={'row'}
           spacing={6}
         >
-          <Menu>
-            <MenuButton
-              as={Button}
-              rounded={'full'}
-              variant={'link'}
-              cursor={'pointer'}
-              minW={0}
-            >
-              <Flex align="center">
-                <Avatar
-                  size={'sm'}
-                  src={'https://avatars.dicebear.com/api/micah/mail@ashallendesign.co.uk.svg'}
-                  mr={2}
-                />
-                <Text display={{ base: 'none', md: 'flex' }}>{user?.username}</Text>
-                <Icon as={ChevronDownIcon} ml={1} />
-              </Flex>
-            </MenuButton>
-            <MenuList>
-              <MenuItem>Profile</MenuItem>
-              <MenuItem>Settings</MenuItem>
-              <MenuDivider />
-              <MenuItem onClick={logout}>Sign Out</MenuItem>
-            </MenuList>
-          </Menu>
+          <Button onClick={logout} colorScheme="blue" variant="ghost">
+            Sign Out
+          </Button>
         </Stack>
       </Flex>
 

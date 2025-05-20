@@ -9,6 +9,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { expenseService } from '../services/api';
 import ExpenseForm from '../components/expenses/ExpenseForm';
 import { ExpenseFormData, Expense } from '../types';
+import { useAuth } from '../context/AuthContext';
 
 const EditExpense = () => {
   const { id } = useParams<{ id: string }>();
@@ -16,6 +17,7 @@ const EditExpense = () => {
   const [isLoading, setIsLoading] = useState(true);
   const toast = useToast();
   const navigate = useNavigate();
+  const { user } = useAuth();
   
   useEffect(() => {
     if (!id) return;
@@ -77,6 +79,7 @@ const EditExpense = () => {
     category: expense.category,
     date: expense.date,
     description: expense.description,
+    user_id: user?.id || '',
   };
   
   return (

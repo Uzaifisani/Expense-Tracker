@@ -8,8 +8,10 @@ const Layout = () => {
   return (
     <Flex direction="column" minH="100vh">
       <Navbar />
-      <Flex flex="1">
-        <Sidebar />
+      <Flex>
+        <Box w="250px">
+          <Sidebar />
+        </Box>
         <Box flex="1" p={4} bg="gray.50">
           <Container maxW="container.xl" py={6}>
             <Outlet />
